@@ -33,4 +33,24 @@ class Home extends BaseController
         ];
         return view('tambah', $data);
     }
+
+    public function simpan()
+    {
+        // 1. Saya panggil dulu si kurir (Model)
+        $bahasaModel = new BahasaModel();
+
+        // 2. Saya ambil data yang tadi diketik di form, terus saya masukin ke dalam satu bungkusan
+        $dataBaru = [
+            'kategori'       => $this->request->getPost('kategori'),
+            'kata_indonesia' => $this->request->getPost('kata_indonesia'),
+            'kata_daerah'    => $this->request->getPost('kata_daerah'),
+            'filosofi'       => $this->request->getPost('filosofi'),
+        ];
+
+        // 3. Saya suruh si kurir buat masukin bungkusan data itu ke tabel database
+        $bahasaModel->save($dataBaru);
+
+        // 4. Kalau sudah beres, saya suruh sistem balik lagi ke halaman depan (Beranda)
+        return redirect()->to('/');
+    }
 }
