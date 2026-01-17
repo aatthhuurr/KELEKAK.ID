@@ -14,8 +14,18 @@
                         <p class="text-lg font-bold text-gray-900 leading-none"><?= $k['kata_daerah']; ?></p>
                         <p class="text-sm text-gray-500 italic mt-1">"<?= $k['kata_indonesia']; ?>"</p>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <button class="bg-green-100 p-2 rounded-full text-xs">🔊</button>
+                    <div class="flex items-center gap-3 mt-4">
+                        <button onclick="putarSuara('indonesia', '<?= $k['kata_indonesia']; ?>')" class="bg-blue-100 p-2 rounded-lg text-[10px] font-bold text-blue-700">
+                            🔊 INA
+                        </button>
+
+                        <button onclick="putarSuara('inggris', '<?= $k['kata_inggris']; ?>')" class="bg-purple-100 p-2 rounded-lg text-[10px] font-bold text-purple-700">
+                            🔊 ENG
+                        </button>
+
+                        <button onclick="putarSuara('daerah', '<?= $k['kata_daerah']; ?>', '<?= $k['file_audio']; ?>')" class="bg-green-600 p-2 rounded-lg text-[10px] font-bold text-white shadow-md">
+                            🔊 DAERAH
+                        </button>
 
                         <a href="<?= base_url('hapus/' . $k['id_bahasa']); ?>"
                             onclick="return confirm('Yakin mau hapus kata ini?')"
