@@ -12,3 +12,6 @@ $routes->get('tambah', 'Home::tambah');
 
 // Saya daftarin jalan buat proses nyimpen datanya (pakai post karena kirim data)
 $routes->post('simpan', 'Home::simpan');
+
+// Tambah fungsi hapus datanya
+$routes->get('hapus/(:num)', 'Home::hapus/$1');
