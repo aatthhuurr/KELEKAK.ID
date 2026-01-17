@@ -87,19 +87,14 @@ class Home extends BaseController
     public function game()
     {
         $bahasaModel = new BahasaModel();
-
-        // 1. Ambil 3 data secara acak dari database
         $semuaData = $bahasaModel->orderBy('RAND()')->findAll(3);
 
-        // 2. Kalau datanya kurang dari 3, kasih peringatan dulu
+        // Jika data kurang, kita tetap buka halaman game tapi soalnya kosong
         if (count($semuaData) < 3) {
-            return "Minimal harus ada 3 data kosa kata untuk main game!";
+            return view('game'); // Menu bawah akan tetap muncul karena extend template
         }
 
-        // 3. Kita tentukan salah satu jadi jawaban yang benar
         $jawabanBenar = $semuaData[0];
-
-        // 4. Kita acak urutan pilihan jawabannya biar gak selalu di nomor 1
         shuffle($semuaData);
 
         $data = [
