@@ -83,4 +83,30 @@ class Home extends BaseController
         // 3. Kalau sudah terhapus, balikkan saya ke halaman Beranda
         return redirect()->to('/');
     }
+
+    public function game()
+    {
+        $bahasaModel = new BahasaModel();
+
+        // 1. Ambil 3 data secara acak dari database
+        $semuaData = $bahasaModel->orderBy('RAND()')->findAll(3);
+
+        // 2. Kalau datanya kurang dari 3, kasih peringatan dulu
+        if (count($semuaData) < 3) {
+            return "Minimal harus ada 3 data kosa kata untuk main game!";
+        }
+
+        // 3. Kita tentukan salah satu jadi jawaban yang benar
+        $jawabanBenar = $semuaData[0];
+
+        // 4. Kita acak urutan pilihan jawabannya biar gak selalu di nomor 1
+        shuffle($semuaData);
+
+        $data = [
+            'pilihan' => $semuaData,
+            'soal' => $jawabanBenar
+        ];
+
+        return view('game', $data);
+    }
 }
