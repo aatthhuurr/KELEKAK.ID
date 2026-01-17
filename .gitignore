@@ -1,0 +1,21 @@
+# --- CodeIgniter 4 Specific ---
+/writable/*
+!/writable/index.html
+!/writable/.htaccess
+
+/public/uploads/*
+
+# --- Database & Config ---
+.env
+/app/Config/Development/*
+!/app/Config/Development/index.html
+
+# --- Vendor & System ---
+/vendor/*
+/system/*
+
+# --- IDE & OS ---
+.DS_Store
+.idea/
+.vscode/
+Thumbs.db
