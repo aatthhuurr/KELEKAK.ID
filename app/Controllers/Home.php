@@ -22,7 +22,7 @@ class Home extends BaseController
         ];
 
         // 4. tampilin halaman view bernama 'v_beranda' sambil bawa bungkusan datanya
-        return view('v_beranda', $data);
+        return view('beranda', $data);
     }
 
     public function tambah()
@@ -31,6 +31,6 @@ class Home extends BaseController
         $data = [
             'title' => 'Tambah Kosa Kata Baru'
         ];
-        return view('v_tambah', $data);
+        return view('tambah', $data);
     }
 }
