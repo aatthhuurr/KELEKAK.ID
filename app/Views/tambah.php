@@ -19,12 +19,22 @@
 
         <div>
             <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Bahasa Indonesia</label>
-            <input type="text" name="kata_indonesia" placeholder="Contoh: Apa Kabar" class="w-full p-3 rounded-xl border border-gray-200 focus:border-green-500 outline-none">
+            <input type="text" name="kata_indonesia" class="w-full p-3 bg-gray-50 border border-gray-100 rounded-xl text-sm" placeholder="Contoh: Halo">
         </div>
 
         <div>
-            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Bahasa Daerah (Babel)</label>
-            <input type="text" name="kata_daerah" placeholder="Contoh: Ape kabar e?" class="w-full p-3 rounded-xl border border-gray-200 focus:border-green-500 outline-none">
+            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Bahasa Inggris (English)</label>
+            <input type="text" name="kata_inggris" class="w-full p-3 bg-gray-50 border border-gray-100 rounded-xl text-sm" placeholder="Contoh: Hello">
+        </div>
+
+        <div>
+            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Bahasa Daerah (Bangka)</label>
+            <input type="text" name="kata_daerah" class="w-full p-3 bg-gray-50 border border-gray-100 rounded-xl text-sm" placeholder="Contoh: Uii Seperadik">
+        </div>
+
+        <div>
+            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Foto Budaya / Objek (.jpg atau .png)</label>
+            <input type="file" name="file_gambar" accept="image/*" class="w-full p-2 text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
         </div>
 
         <div>
