@@ -7,12 +7,16 @@
 
     <div class="grid grid-cols-1 gap-4 mb-20">
         <?php foreach ($kamus as $k) : ?>
+            <?php if ($k['file_gambar']) : ?>
+                <img src="<?= base_url('uploads/img/' . $k['file_gambar']); ?>" class="w-full h-48 object-cover rounded-xl mb-4 shadow-sm">
+            <?php endif; ?>
             <div class="bg-white rounded-2xl p-5 shadow-sm border-l-4 border-green-600 hover:shadow-md transition-all">
                 <div class="flex justify-between items-start">
                     <div>
                         <h3 class="text-xs font-bold text-green-700 uppercase mb-1 tracking-wider"><?= $k['kategori']; ?></h3>
                         <p class="text-lg font-bold text-gray-900 leading-none"><?= $k['kata_daerah']; ?></p>
-                        <p class="text-sm text-gray-500 italic mt-1">"<?= $k['kata_indonesia']; ?>"</p>
+                        <p class="text-sm text-gray-500 font-medium mt-1">"<?= $k['kata_indonesia']; ?>"</p>
+                        <p class="text-[11px] text-blue-600 font-medium mt-1"><?= $k['kata_inggris']; ?></p>
                     </div>
                     <div class="flex items-center gap-3 mt-4">
                         <button onclick="putarSuara('indonesia', '<?= $k['kata_indonesia']; ?>')" class="bg-blue-100 p-2 rounded-lg text-[10px] font-bold text-blue-700">
