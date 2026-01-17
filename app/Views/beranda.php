@@ -35,3 +35,25 @@
 
 </div>
 <?= $this->endSection(); ?>
+<script>
+    function putarSuara(tipe, teks, fileAudio = '') {
+        // 1. Kalau yang dipencet suara daerah dan ada file rekamannya, kita putar filenya
+        if (tipe === 'daerah' && fileAudio !== '') {
+            const audio = new Audio('<?= base_url('uploads/audio/'); ?>' + fileAudio);
+            audio.play();
+        } else {
+            // 2. Kalau gak ada file, atau itu bahasa Indonesia/Inggris, kita suruh robot AI ngomong
+            const robot = window.speechSynthesis;
+            const ucapan = new SpeechSynthesisUtterance(teks);
+
+            // Atur bahasa robotnya
+            if (tipe === 'inggris') {
+                ucapan.lang = 'en-US';
+            } else {
+                ucapan.lang = 'id-ID'; // Default bahasa Indonesia
+            }
+
+            robot.speak(ucapan);
+        }
+    }
+</script>
