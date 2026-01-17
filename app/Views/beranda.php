@@ -47,22 +47,30 @@
 <?= $this->endSection(); ?>
 <script>
     function putarSuara(tipe, teks, fileAudio = '') {
-        // 1. Kalau yang dipencet suara daerah dan ada file rekamannya, kita putar filenya
-        if (tipe === 'daerah' && fileAudio !== '') {
+        // 1. Cek dulu: Kalau suara DAERAH dan ada file rekamannya
+        if (tipe === 'daerah' && fileAudio !== '' && fileAudio !== null) {
             const audio = new Audio('<?= base_url('uploads/audio/'); ?>' + fileAudio);
-            audio.play();
+            audio.play().catch(e => console.log("Gagal putar audio file: ", e));
         } else {
-            // 2. Kalau gak ada file, atau itu bahasa Indonesia/Inggris, kita suruh robot AI ngomong
+            // 2. Kalau suara INDONESIA atau INGGRIS (Pakai AI)
             const robot = window.speechSynthesis;
+
+            // Kita batalin dulu kalau ada suara robot yang lagi ngomong sebelumnya (biar gak antri)
+            robot.cancel();
+
             const ucapan = new SpeechSynthesisUtterance(teks);
 
-            // Atur bahasa robotnya
+            // Pilih bahasa robotnya
             if (tipe === 'inggris') {
                 ucapan.lang = 'en-US';
             } else {
-                ucapan.lang = 'id-ID'; // Default bahasa Indonesia
+                ucapan.lang = 'id-ID';
             }
 
+            // Atur kecepatannya biar gak kayak robot beneran (normal = 1)
+            ucapan.rate = 0.9;
+
+            // Suruh ngomong!
             robot.speak(ucapan);
         }
     }
