@@ -4,7 +4,7 @@
 <div class="max-w-md mx-auto">
     <h2 class="font-bold text-xl mb-6 text-gray-800">Tambah Warisan Kata</h2>
 
-    <form action="/home/simpan" method="post" class="space-y-4">
+    <form action="/simpan" method="post" class="space-y-4">
         
         <div>
             <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Kategori</label>
