@@ -36,21 +36,39 @@ class Home extends BaseController
 
     public function simpan()
     {
-        // 1. Saya panggil dulu si kurir (Model)
         $bahasaModel = new BahasaModel();
 
-        // 2. Saya ambil data yang tadi diketik di form, terus saya masukin ke dalam satu bungkusan
+        // 1. Ambil file dari request
+        $fileAudio = $this->request->getFile('file_audio');
+        $fileGambar = $this->request->getFile('file_gambar');
+
+        $namaAudio = '';
+        $namaGambar = '';
+
+        // 2. Cek Audio (Hanya proses JIKA ada file yang diupload)
+        if ($fileAudio && $fileAudio->isValid() && !$fileAudio->hasMoved()) {
+            $namaAudio = $fileAudio->getRandomName();
+            $fileAudio->move('uploads/audio', $namaAudio);
+        }
+
+        // 3. Cek Gambar (Hanya proses JIKA ada file yang diupload)
+        if ($fileGambar && $fileGambar->isValid() && !$fileGambar->hasMoved()) {
+            $namaGambar = $fileGambar->getRandomName();
+            $fileGambar->move('uploads/img', $namaGambar);
+        }
+
+        // 4. Masukin ke database
         $dataBaru = [
             'kategori'       => $this->request->getPost('kategori'),
             'kata_indonesia' => $this->request->getPost('kata_indonesia'),
+            'kata_inggris'   => $this->request->getPost('kata_inggris'),
             'kata_daerah'    => $this->request->getPost('kata_daerah'),
             'filosofi'       => $this->request->getPost('filosofi'),
+            'file_audio'     => $namaAudio,
+            'file_gambar'    => $namaGambar
         ];
 
-        // 3. Saya suruh si kurir buat masukin bungkusan data itu ke tabel database
         $bahasaModel->save($dataBaru);
-
-        // 4. Kalau sudah beres, saya suruh sistem balik lagi ke halaman depan (Beranda)
         return redirect()->to('/');
     }
 
