@@ -15,3 +15,6 @@ $routes->post('simpan', 'Home::simpan');
 
 // Tambah fungsi hapus datanya
 $routes->get('hapus/(:num)', 'Home::hapus/$1');
+
+//Tambah untuk game
+$routes->get('game', 'Home::game');
