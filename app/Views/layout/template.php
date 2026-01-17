@@ -36,7 +36,7 @@
         <a href="<?= base_url('tambah'); ?>" class="text-center">
             <p>📖</p> Tambah Kata
         </a>
-        <a href="#" class="text-center">
+        <a href="<?= base_url('game'); ?>" class="text-center">
             <p>🎮</p> Game
         </a>
         <a href="#" class="text-center">
