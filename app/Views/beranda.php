@@ -43,35 +43,42 @@
         <?php endforeach; ?>
     </div>
 
-</div>
-<?= $this->endSection(); ?>
-<script>
-    function putarSuara(tipe, teks, fileAudio = '') {
-        // 1. Cek dulu: Kalau suara DAERAH dan ada file rekamannya
-        if (tipe === 'daerah' && fileAudio !== '' && fileAudio !== null) {
-            const audio = new Audio('<?= base_url('uploads/audio/'); ?>' + fileAudio);
-            audio.play().catch(e => console.log("Gagal putar audio file: ", e));
-        } else {
-            // 2. Kalau suara INDONESIA atau INGGRIS (Pakai AI)
+    <script>
+        function putarSuara(tipe, teks, fileAudio = '') {
             const robot = window.speechSynthesis;
+            robot.cancel(); // Reset suara biar gak tumpang tindih
 
-            // Kita batalin dulu kalau ada suara robot yang lagi ngomong sebelumnya (biar gak antri)
-            robot.cancel();
-
-            const ucapan = new SpeechSynthesisUtterance(teks);
-
-            // Pilih bahasa robotnya
-            if (tipe === 'inggris') {
-                ucapan.lang = 'en-US';
+            if (tipe === 'daerah' && fileAudio !== '' && fileAudio !== null) {
+                console.log("Memutar file audio asli: " + fileAudio);
+                const audio = new Audio('<?= base_url('uploads/audio/'); ?>' + fileAudio);
+                audio.play().catch(error => console.log("Gagal putar file: ", error));
             } else {
-                ucapan.lang = 'id-ID';
+                const ucapan = new SpeechSynthesisUtterance(teks);
+                const daftarSuara = robot.getVoices();
+
+                if (tipe === 'inggris') {
+                    // Cari suara yang beneran English (US atau UK)
+                    const suaraEnglish = daftarSuara.find(voice => voice.lang.includes('en-'));
+                    if (suaraEnglish) {
+                        ucapan.voice = suaraEnglish;
+                        ucapan.lang = 'en-US';
+                    }
+                } else {
+                    // Cari suara yang beneran Indonesia
+                    const suaraIndo = daftarSuara.find(voice => voice.lang.includes('id-'));
+                    if (suaraIndo) {
+                        ucapan.voice = suaraIndo;
+                        ucapan.lang = 'id-ID';
+                    }
+                }
+
+                ucapan.rate = 1.0; // Kecepatan normal
+                robot.speak(ucapan);
             }
-
-            // Atur kecepatannya biar gak kayak robot beneran (normal = 1)
-            ucapan.rate = 0.9;
-
-            // Suruh ngomong!
-            robot.speak(ucapan);
         }
-    }
-</script>
+
+        // Pancing daftar suara agar selalu siap
+        window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    </script>
+
+</div> <?= $this->endSection(); ?>

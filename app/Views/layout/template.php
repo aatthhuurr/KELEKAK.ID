@@ -30,10 +30,10 @@
     </main>
 
     <nav class="fixed bottom-0 w-full bg-white border-t flex justify-around p-3 text-[10px] text-gray-500 shadow-2xl">
-        <a href="/" class="text-green-900 font-bold text-center">
+        <a href="<?= base_url(); ?>" class="text-green-900 font-bold text-center">
             <p>🏠</p> Beranda
         </a>
-        <a href="/tambah" class="text-center">
+        <a href="<?= base_url('tambah'); ?>" class="text-center">
             <p>📖</p> Tambah Kata
         </a>
         <a href="#" class="text-center">
