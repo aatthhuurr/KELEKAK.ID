@@ -26,18 +26,24 @@
                         </div>
 
                         <div class="flex items-center gap-2 mt-2">
-                            <button onclick="putarSuara('indonesia', '<?= $k['kata_indonesia']; ?>')" class="bg-blue-50 p-2 rounded-lg text-[10px] font-bold text-blue-700 hover:bg-blue-100">
+                            <button onclick="putarSuara('indonesia', '<?= $k['kata_indonesia']; ?>')"
+                                class="bg-blue-600 px-3 py-1.5 rounded-lg text-[10px] font-bold text-white shadow-sm hover:bg-blue-700 transition-all">
                                 INA
                             </button>
-                            <button onclick="putarSuara('inggris', '<?= $k['kata_inggris']; ?>')" class="bg-purple-50 p-2 rounded-lg text-[10px] font-bold text-purple-700 hover:bg-purple-100">
+
+                            <button onclick="putarSuara('inggris', '<?= $k['kata_inggris']; ?>')"
+                                class="bg-purple-600 px-3 py-1.5 rounded-lg text-[10px] font-bold text-white shadow-sm hover:bg-purple-700 transition-all">
                                 ENG
                             </button>
-                            <button onclick="putarSuara('daerah', '<?= $k['kata_daerah']; ?>', '<?= $k['file_audio']; ?>')" class="bg-green-600 p-2 rounded-lg text-[10px] font-bold text-white shadow-md hover:bg-green-700">
+
+                            <button onclick="putarSuara('daerah', '<?= $k['kata_daerah']; ?>', '<?= $k['file_audio']; ?>')"
+                                class="bg-green-600 p-2 rounded-lg text-white shadow-md hover:bg-green-700 transition-all">
                                 🔊
                             </button>
+
                             <a href="<?= base_url('hapus/' . $k['id_bahasa']); ?>"
                                 onclick="return confirm('Yakin mau hapus kata ini?')"
-                                class="bg-red-50 p-2 rounded-full text-xs text-red-500 hover:bg-red-100"
+                                class="bg-red-100 p-2 rounded-full text-red-500 hover:bg-red-200 transition-all"
                                 title="Hapus">
                                 🗑️
                             </a>
