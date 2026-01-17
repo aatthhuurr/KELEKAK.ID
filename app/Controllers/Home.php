@@ -53,4 +53,16 @@ class Home extends BaseController
         // 4. Kalau sudah beres, saya suruh sistem balik lagi ke halaman depan (Beranda)
         return redirect()->to('/');
     }
+
+    public function hapus($id)
+    {
+        // 1. Saya panggil si kurir (Model)
+        $bahasaModel = new BahasaModel();
+
+        // 2. Saya suruh si kurir buat hapus data berdasarkan ID-nya
+        $bahasaModel->delete($id);
+
+        // 3. Kalau sudah terhapus, balikkan saya ke halaman Beranda
+        return redirect()->to('/');
+    }
 }
