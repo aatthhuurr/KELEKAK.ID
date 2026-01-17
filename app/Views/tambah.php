@@ -4,9 +4,9 @@
 <div class="max-w-md mx-auto">
     <h2 class="font-bold text-xl mb-6 text-gray-800">Tambah Warisan Kata</h2>
 
-    <form action="/simpan" method="post" class="space-y-4">
-        
-        <div>
+    <form action="<?= base_url('simpan'); ?>" method="post" class="space-y-4">
+
+        <div
             <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Kategori</label>
             <select name="kategori" class="w-full p-3 rounded-xl border border-gray-200 focus:border-green-500 outline-none transition-all">
                 <option value="Sapaan">Sapaan</option>
